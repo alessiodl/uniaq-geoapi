@@ -5,7 +5,10 @@ Utilizza JWT per l'autenticazione degli utenti attraverso token temporizzato.
 ## End point delle API
 
 ### Rilascio del token di autorizzazione:
-http://hostname/api/login?username=your_username&password=your_password
+http://hostname/api/login
+#### Parametri attesi: username, password
+#### Ritorna: oggetto JSON
+esempio: <i>http://hostname/api/login?username=your_username&password=your_password</i>
 
 ### Punti di campionamento:
 http://hostname/api/punti?token=your_token
