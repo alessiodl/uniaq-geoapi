@@ -36,7 +36,7 @@ db_host = app.config.get('DB_HOST')
 con = psycopg2.connect(database=db_name, user=db_user, password=db_pass, host=db_host)
 
 # ROUTES
-@app.route('/login')
+@app.route('/api/login')
 def login():
     username = request.args.get('username')
     password = request.args.get('password')
@@ -46,7 +46,7 @@ def login():
     else:
         return make_response('Impossibile verificare!', 401, {'WWW-Authenticate':'Basic realm="Login Required"'})
 
-@app.route('/punti')
+@app.route('/api/punti')
 @token_required
 def punti():
     # return jsonify({'message' : 'Contenuto visibile solo agli utenti autorizzati'})
@@ -55,7 +55,7 @@ def punti():
     punti_campionamento = json.loads(gdf.to_json())
     return jsonify(punti_campionamento)
     
-@app.route('/comuni')
+@app.route('/api/comuni')
 @token_required
 def comuni():
     nome = request.args.get('nome')
@@ -67,7 +67,7 @@ def comuni():
     comuni_abruzzo = json.loads(gdf.to_json())
     return jsonify(comuni_abruzzo)
 
-@app.route('/dati/microbiologici')
+@app.route('/api/dati/microbiologici')
 @token_required
 def dati_microbiologici():
     indici = request.args.get('indici')
@@ -83,7 +83,7 @@ def dati_microbiologici():
     else:
         return jsonify({"message" : "occorre specificare gli indici desiderati!"})
 
-@app.route('/dati/vinificazione')
+@app.route('/api/dati/vinificazione')
 @token_required
 def dati_vinificazione():
     parametri = request.args.get('parametri')
