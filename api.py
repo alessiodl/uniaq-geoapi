@@ -5,6 +5,7 @@ import jwt
 import datetime
 from functools import wraps
 import geopandas as gpd
+import pandas as pd
 from osgeo import gdal
 import psycopg2
 import fiona
@@ -65,6 +66,38 @@ def comuni():
     gdf = gpd.GeoDataFrame.from_postgis(sql,con,geom_col="geom")
     comuni_abruzzo = json.loads(gdf.to_json())
     return jsonify(comuni_abruzzo)
+
+@app.route('/dati/microbiologici')
+@token_required
+def dati_microbiologici():
+    indici = request.args.get('indici')
+    if indici:
+        if indici in ['biodiversita_funzionale','biodiversita_genetica']:
+            table = 'indici_'+indici
+            sql = 'SELECT * FROM '+table+';'
+            df = pd.read_sql_query(sql,con)
+            valori = json.loads(df.to_json(orient='records'))
+            return jsonify(valori)
+        else:
+            return jsonify({"message" : "indici sconosciuti!"})
+    else:
+        return jsonify({"message" : "occorre specificare gli indici desiderati!"})
+
+@app.route('/dati/vinificazione')
+@token_required
+def dati_vinificazione():
+    parametri = request.args.get('parametri')
+    if parametri:
+        if parametri in ['maturazione_tecnologica','microvinificazione']:
+            table = 'parametri_'+parametri
+            sql = 'SELECT * FROM '+table+';'
+            df = pd.read_sql_query(sql,con)
+            valori = json.loads(df.to_json(orient='records'))
+            return jsonify(valori)
+        else:
+            return jsonify({"message" : "parametri sconosciuti!"})
+    else:
+        return jsonify({"message" : "occorre specificare parametri desiderati!"})
 
 # app.run(host='127.0.0.1', debug=True)
 app.run(host='0.0.0.0', debug=True)
