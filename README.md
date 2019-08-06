@@ -5,28 +5,34 @@ Utilizza JWT per l'autenticazione degli utenti attraverso token temporizzato.
 ## End point delle API
 
 ### http://hostname/api/login
-PARAMETRI: <strong>username</strong>, <strong>password</strong></br>
-RITORNA: JSON Object (token)</br>
-ESEMPIO: http://hostname/api/login?username=your_username&password=your_password
+<ul>
+    <li>PARAMETRI: <strong>username</strong>, <strong>password</strong></li>
+    <li>RITORNA: JSON Object (token)</li>
+    <li>ESEMPIO: http://hostname/api/login?username=your_username&password=your_password</li>
+</ul>
 
 ### http://hostname/api/punti
 PARAMETRI: <strong>token</strong></br>
 VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
 RITORNA: GeoJSON Feature Collection</br>
-ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsImV4cCI6MTU2NTA4Njg2N30.KmsvJwNEevpNnzGMV0nvCMyMUVPwe6Hk7wU4WEKxMR0
+ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
 
 ### http://hostname/api/comuni
 PARAMETRI: <strong>token</strong>, <strong>nomeComune</strong></br>
 VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
 RITORNA: GeoJSON Feature Collection</br>
-ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsImV4cCI6MTU2NTA4Njg2N30.KmsvJwNEevpNnzGMV0nvCMyMUVPwe6Hk7wU4WEKxMR0&nomeComune=Villamagna
+ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&nomeComune=Villamagna
 
-### Dati microbiologici (ritorna un array di oggetti JSON)
-http://hostname/api/dati/microbiologici?token=your_token&tipoDati=biodiversita_funzionale</br>
-valori ammessi per <i>tipoDati</i>: <strong>biodiversita_funzionale</strong>, <strong>biodiversita_genetica</strong>
+### http://hostname/api/dati/microbiologici
+PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></br>
+VALORI AMMESSI: <i>biodiversita_funzionale</i>, <i>biodiversita_genetica</i>
+RITORNA: JSON Object Array</br>
+ESEMPIO: http://hostname/api/dati/microbiologici?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=biodiversita_funzionale
 
-### Dati vinificazione (ritorna un array di oggetti JSON)
-http://hostname/api/dati/vinificazione?token=your_token&tipoDati=microvinificazione</br>
-valori ammessi per <i>tipoDati</i>: <strong>microvinificazione</strong>, <strong>maturazione_tecnologica</strong>
+### http://hostname/api/dati/vinificazione
+PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></br>
+VALORI AMMESSI: <i>microvinificazione</i>, <i>maturazione_tecnologica</i>
+RITORNA: JSON Object Array</br>
+ESEMPIO: http://hostname/api/dati/vinificazione?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=microvinificazione
 
 
