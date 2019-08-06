@@ -11,18 +11,16 @@ http://hostname/api/login?username=your_username&password=your_password
 http://hostname/api/punti?token=your_token
 
 ### Comuni (ritorna una GeoJSON Feature Collection):
-http://hostname/api/comuni?token=your_token&name=nome_comune
-
-es: "Villamagna"
+http://hostname/api/comuni?token=your_token&nomeComune=nome_comune
+valori ammessi per <i>nomeComune</i>: tutti i Comuni abruzzesi
+es: nomeComune = Villamagna
 
 ### Dati microbiologici (ritorna un array di oggetti JSON):
-http://hostname/api/dati/microbiologici?token=your_token&indici=biodiversita_funzionale
-
-valori ammessi per <i>indici</i>: "biodiversita_funzionale", "biodiversita_genetica"
+http://hostname/api/dati/microbiologici?token=your_token&tipoDati=biodiversita_funzionale
+valori ammessi per <i>tipoDati</i>: "biodiversita_funzionale", "biodiversita_genetica"
 
 ### Dati vinificazione (ritorna un array di oggetti JSON):
-http://hostname/api/dati/vinificazione?token=your_token&parametri=microvinificazione
-
-valori ammessi per <i>parametri</i>: "microvinificazione", "maturazione_tecnologica"
+http://hostname/api/dati/vinificazione?token=your_token&tipoDati=microvinificazione
+valori ammessi per <i>tipoDati</i>: "microvinificazione", "maturazione_tecnologica"
 
 

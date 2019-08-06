@@ -58,7 +58,7 @@ def punti():
 @app.route('/api/comuni')
 @token_required
 def comuni():
-    nome = request.args.get('nome')
+    nome = request.args.get('nomeComune')
     if nome:
         sql = "SELECT * FROM comuni_abruzzo WHERE nome = '"+nome+"';"
     else:
@@ -70,34 +70,34 @@ def comuni():
 @app.route('/api/dati/microbiologici')
 @token_required
 def dati_microbiologici():
-    indici = request.args.get('indici')
-    if indici:
-        if indici in ['biodiversita_funzionale','biodiversita_genetica']:
-            table = 'indici_'+indici
+    tipo = request.args.get('tipoDati')
+    if tipo:
+        if tipo in ['biodiversita_funzionale','biodiversita_genetica']:
+            table = 'indici_'+tipo
             sql = 'SELECT * FROM '+table+';'
             df = pd.read_sql_query(sql,con)
             valori = json.loads(df.to_json(orient='records'))
             return jsonify(valori)
         else:
-            return jsonify({"message" : "indici sconosciuti!"})
+            return jsonify({"message" : "dati non presenti!"})
     else:
-        return jsonify({"message" : "occorre specificare gli indici desiderati!"})
+        return jsonify({"message" : "occorre specificare i dati microbiologici desiderati!"})
 
 @app.route('/api/dati/vinificazione')
 @token_required
 def dati_vinificazione():
-    parametri = request.args.get('parametri')
-    if parametri:
-        if parametri in ['maturazione_tecnologica','microvinificazione']:
-            table = 'parametri_'+parametri
+    tipo = request.args.get('tipoDati')
+    if tipo:
+        if tipo in ['maturazione_tecnologica','microvinificazione']:
+            table = 'parametri_'+tipo
             sql = 'SELECT * FROM '+table+';'
             df = pd.read_sql_query(sql,con)
             valori = json.loads(df.to_json(orient='records'))
             return jsonify(valori)
         else:
-            return jsonify({"message" : "parametri sconosciuti!"})
+            return jsonify({"message" : "dati non presenti!"})
     else:
-        return jsonify({"message" : "occorre specificare parametri desiderati!"})
+        return jsonify({"message" : "occorre specificare i dati di microvinificazione desiderati!"})
 
 # app.run(host='127.0.0.1', debug=True)
 app.run(host='0.0.0.0', debug=True)
