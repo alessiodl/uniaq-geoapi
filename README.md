@@ -12,27 +12,35 @@ Utilizza JWT per l'autenticazione degli utenti attraverso token temporizzato.
 </ul>
 
 ### http://hostname/api/punti
-PARAMETRI: <strong>token</strong></br>
-VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
-RITORNA: GeoJSON Feature Collection</br>
-ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9
+<ul>
+    <li>PARAMETRI: <strong>token</strong></li>
+    <li>VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</li>
+    <li>RITORNA: GeoJSON Feature Collection</li>
+    <li>ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</li>
+</ul>
 
 ### http://hostname/api/comuni
-PARAMETRI: <strong>token</strong>, <strong>nomeComune</strong></br>
-VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
-RITORNA: GeoJSON Feature Collection</br>
-ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&nomeComune=Villamagna
+<ul>
+    <li>PARAMETRI: <strong>token</strong>, <strong>nomeComune</strong></li>
+    <li>VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</li>
+    <li>RITORNA: GeoJSON Feature Collection</li>
+    <li>ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&nomeComune=Villamagna</li>
+</ul>
 
 ### http://hostname/api/dati/microbiologici
-PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></br>
-VALORI AMMESSI: <i>biodiversita_funzionale</i>, <i>biodiversita_genetica</i>
-RITORNA: JSON Object Array</br>
-ESEMPIO: http://hostname/api/dati/microbiologici?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=biodiversita_funzionale
+<ul>
+    <li>PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></li>
+    <li>VALORI AMMESSI: <i>biodiversita_funzionale</i>, <i>biodiversita_genetica</i></li>
+    <li>RITORNA: JSON Object Array</li>
+    <li>ESEMPIO: http://hostname/api/dati/microbiologici?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=biodiversita_funzionale</li>
+</ul>
 
 ### http://hostname/api/dati/vinificazione
-PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></br>
-VALORI AMMESSI: <i>microvinificazione</i>, <i>maturazione_tecnologica</i>
-RITORNA: JSON Object Array</br>
-ESEMPIO: http://hostname/api/dati/vinificazione?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=microvinificazione
+<ul>
+    <li>PARAMETRI: <strong>token</strong>, <strong>tipoDati</strong></li>
+    <li>VALORI AMMESSI: <i>microvinificazione</i>, <i>maturazione_tecnologica</i></li>
+    <li>RITORNA: JSON Object Array</li>
+    <li>ESEMPIO: http://hostname/api/dati/vinificazione?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=microvinificazione</li>
+</ul>
 
 
