@@ -1,6 +1,6 @@
 # UniAQ GeoAPI
-GeoAPI per l'interrogazione di un database PostGIS sui dati agroambientali dell'Università degli Studi dell'Aquila.
-Utilizza JWT per l'autenticazione degli utenti attraverso token temporizzato.
+API basata su Flask e sui principali pacchetti open source per la gestione di dati spaziali. Permette l'interrogazione di un database PostGIS popolato con dati geografici e dati agroambientali dell'Università degli Studi dell'Aquila.
+Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attraverso un token temporizzato.
 
 <img src="postman_testing.png" alt="postman testing"/>
 
