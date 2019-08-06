@@ -4,16 +4,21 @@ Utilizza JWT per l'autenticazione degli utenti attraverso token temporizzato.
 
 ## End point delle API
 
-### Rilascio del token di autorizzazione (ritorna un oggetto JSON)
-http://hostname/api/login?username=your_username&password=your_password
+### http://hostname/api/login
+PARAMETRI: <strong>username</strong>, <strong>password</strong></br>
+RITORNA: JSON Object (token)</br>
+ESEMPIO: http://hostname/api/login?username=your_username&password=your_password
 
-### Punti di campionamento (ritorna una GeoJSON Feature Collection)
-http://hostname/api/punti?token=your_token
-
-### Comuni (ritorna una GeoJSON Feature Collection)
-URL: http://hostname/api/comuni</br>
-PARAMETRI INPUT: <strong>token</strong>, <strong>nomeComune</strong></br>
+### http://hostname/api/punti
+PARAMETRI: <strong>token</strong></br>
 VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
+RITORNA: GeoJSON Feature Collection</br>
+ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsImV4cCI6MTU2NTA4Njg2N30.KmsvJwNEevpNnzGMV0nvCMyMUVPwe6Hk7wU4WEKxMR0
+
+### http://hostname/api/comuni
+PARAMETRI: <strong>token</strong>, <strong>nomeComune</strong></br>
+VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</br>
+RITORNA: GeoJSON Feature Collection</br>
 ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsImV4cCI6MTU2NTA4Njg2N30.KmsvJwNEevpNnzGMV0nvCMyMUVPwe6Hk7wU4WEKxMR0&nomeComune=Villamagna
 
 ### Dati microbiologici (ritorna un array di oggetti JSON)
