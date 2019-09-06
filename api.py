@@ -108,13 +108,13 @@ def dem():
 
 @app.route('/api/raster/esposizione')
 def esposizione():
-	image_url = url_for('static', filename='Esposizioni_wgs84.tif')
-	return jsonify({"url":image_url, "min":8.28132, "max":352.794, "description":"Mappa della Esposizione","provider":"UNIVAQ_DISIM"})
+	image_url = url_for('static', filename='Esposizioni_crop_wgs84.tif')
+	return jsonify({"url":image_url, "min":7.20119, "max":352.786, "description":"Mappa della Esposizione","provider":"UNIVAQ_DISIM"})
 
 @app.route('/api/raster/pendenza')
 def pendenza():
-	image_url = url_for('static', filename='Pendenza_wgs84.tif')
-	return jsonify({"url":image_url, "min":2.30733, "max":59.3753,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
+	image_url = url_for('static', filename='Pendenza_crop_wgs84.tif')
+	return jsonify({"url":image_url, "min":1.99969, "max":57.068,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
 
 # app.run(host='127.0.0.1', debug=True)
 app.run(host='0.0.0.0', debug=True)
