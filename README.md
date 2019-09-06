@@ -45,4 +45,19 @@ Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attr
     <li>ESEMPIO: http://hostname/api/dati/vinificazione?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=microvinificazione</li>
 </ul>
 
+### http://hostname/api/raster/dem
+<ul>
+    <li>RITORNA: JSON Object</li>
+</ul>
+
+### http://hostname/api/raster/esposizione
+<ul>
+    <li>RITORNA: JSON Object</li>
+</ul>
+
+### http://hostname/api/raster/pendenza
+<ul>
+    <li>RITORNA: JSON Object</li>
+</ul>
+
 
