@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, url_for
 from flask_cors import CORS
 import json
 import jwt
@@ -12,7 +12,7 @@ import psycopg2
 import fiona
 
 # APP
-app = Flask(__name__)
+app = Flask(__name__, static_folder="raster_data")
 app.config.from_pyfile(os.path.join('config', 'api.conf'), silent=False)
 CORS(app)
 
@@ -100,6 +100,21 @@ def dati_vinificazione():
             return jsonify({"message" : "dati non presenti!"})
     else:
         return jsonify({"message" : "occorre specificare i dati di microvinificazione desiderati!"})
+
+@app.route('/api/raster/dem')
+def dem():
+	image_url = url_for('static', filename='DEM_crop_wgs84.tif')
+	return jsonify({"url":image_url, "min":155.378, "max":334.486, "description":"Digital Elevation Model","provider":"UNIVAQ_DISIM"})
+
+@app.route('/api/raster/esposizione')
+def esposizione():
+	image_url = url_for('static', filename='Esposizioni_wgs84.tif')
+	return jsonify({"url":image_url, "min":8.28132, "max":352.794, "description":"Mappa della Esposizione","provider":"UNIVAQ_DISIM"})
+
+@app.route('/api/raster/pendenza')
+def pendenza():
+	image_url = url_for('static', filename='Pendenza_wgs84.tif')
+	return jsonify({"url":image_url, "min":2.30733, "max":59.3753,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
 
 # app.run(host='127.0.0.1', debug=True)
 app.run(host='0.0.0.0', debug=True)
