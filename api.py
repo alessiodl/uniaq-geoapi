@@ -1,5 +1,6 @@
 import os
 from flask import Flask, jsonify, request, make_response
+from flask_cors import CORS
 import json
 import jwt
 import datetime
@@ -13,6 +14,7 @@ import fiona
 # APP
 app = Flask(__name__)
 app.config.from_pyfile(os.path.join('config', 'api.conf'), silent=False)
+CORS(app)
 
 def token_required(f):
     @wraps(f)
