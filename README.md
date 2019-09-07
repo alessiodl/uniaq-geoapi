@@ -15,18 +15,18 @@ Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attr
 
 ### http://hostname/api/punti
 <ul>
-    <li>PARAMETRI: <strong>token</strong></li>
-    <li>VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</li>
+    <li>PARAMETRI: <strong>token</strong>,<strong>istatComune</strong></li>
+    <li>VALORI AMMESSI: tutti i codici istat dei Comuni abruzzesi (es: 069101 per Villamagna)</li>
     <li>RITORNA: GeoJSON Feature Collection</li>
     <li>ESEMPIO: http://hostname/api/punti?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</li>
 </ul>
 
 ### http://hostname/api/comuni
 <ul>
-    <li>PARAMETRI: <strong>token</strong>, <strong>nomeComune</strong></li>
-    <li>VALORI AMMESSI: tutti i Comuni abruzzesi (es: Villamagna)</li>
+    <li>PARAMETRI: <strong>token</strong>, <strong>istatComune</strong></li>
+    <li>VALORI AMMESSI: tutti i codici istat dei Comuni abruzzesi (es: 069101 per Villamagna)</li>
     <li>RITORNA: GeoJSON Feature Collection</li>
-    <li>ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&nomeComune=Villamagna</li>
+    <li>ESEMPIO: http://hostname/api/comuni?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&istatComune=069101</li>
 </ul>
 
 ### http://hostname/api/dati/microbiologici

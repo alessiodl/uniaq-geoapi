@@ -51,8 +51,11 @@ def login():
 @app.route('/api/punti')
 @token_required
 def punti():
-    # return jsonify({'message' : 'Contenuto visibile solo agli utenti autorizzati'})
-    sql = "SELECT * FROM punti_campionamento;"
+    istat = request.args.get('istatComune')
+    if istat:
+        sql = "SELECT * FROM punti_campionamento WHERE cod_istat = '"+istat+"';"
+    else: 
+        sql = "SELECT * FROM punti_campionamento;"
     gdf = gpd.GeoDataFrame.from_postgis(sql,con,geom_col="geom")
     punti_campionamento = json.loads(gdf.to_json())
     return jsonify(punti_campionamento)
@@ -60,11 +63,11 @@ def punti():
 @app.route('/api/comuni')
 @token_required
 def comuni():
-    nome = request.args.get('nomeComune')
-    if nome:
-        sql = "SELECT * FROM comuni_abruzzo WHERE nome = '"+nome+"';"
+    istat = request.args.get('istatComune')
+    if istat:
+        sql = "SELECT * FROM comuni_abruzzo WHERE cod_istat = '"+istat+"';"
     else:
-        sql = "SELECT * FROM comuni_abruzzo;"
+        sql = "SELECT * FROM comuni_abruzzo ORDER BY nome;"
     gdf = gpd.GeoDataFrame.from_postgis(sql,con,geom_col="geom")
     comuni_abruzzo = json.loads(gdf.to_json())
     return jsonify(comuni_abruzzo)
