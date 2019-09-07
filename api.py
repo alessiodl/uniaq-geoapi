@@ -76,10 +76,11 @@ def comuni():
 @token_required
 def dati_microbiologici():
     tipo = request.args.get('tipoDati')
+    istat = request.args.get('istatComune')
     if tipo:
         if tipo in ['biodiversita_funzionale','biodiversita_genetica']:
             table = 'indici_'+tipo
-            sql = 'SELECT * FROM '+table+';'
+            sql = 'SELECT * FROM '+table+' WHERE "COD_ISTAT" = \''+istat+'\';'
             df = pd.read_sql_query(sql,con)
             valori = json.loads(df.to_json(orient='records'))
             return jsonify(valori)
@@ -92,10 +93,11 @@ def dati_microbiologici():
 @token_required
 def dati_vinificazione():
     tipo = request.args.get('tipoDati')
+    istat = request.args.get('istatComune')
     if tipo:
         if tipo in ['maturazione_tecnologica','microvinificazione']:
             table = 'parametri_'+tipo
-            sql = 'SELECT * FROM '+table+';'
+            sql = 'SELECT * FROM '+table+' WHERE "COD_ISTAT" = \''+istat+'\';'
             df = pd.read_sql_query(sql,con)
             valori = json.loads(df.to_json(orient='records'))
             return jsonify(valori)
