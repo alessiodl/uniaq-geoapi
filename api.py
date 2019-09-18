@@ -10,6 +10,7 @@ import pandas as pd
 # from osgeo import gdal
 import rasterio as rio
 import numpy as np
+import math
 import psycopg2
 # import fiona
 
@@ -140,10 +141,19 @@ def ndvi():
         array = raster.read(masked=True)
         stats = []
         for band in array:
+            if math.isnan(band.min()):
+                min = 'impossibile calcolare'
+                mean = 'impossibile calcolare'
+                max = 'impossibile calcolare'
+            else:
+                min = band.min()
+                mean = band.mean()
+                max = band.max()
+                
             stats.append({
-                "min":band.min(),
-                "mean":band.mean(),
-                "max":band.max()
+                "min":min,
+                "mean":mean,
+                "max":max
             })
         stats_string = str(stats).replace("\'", "\"")
         stats_obj = json.loads(stats_string)
