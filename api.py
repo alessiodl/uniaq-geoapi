@@ -7,9 +7,11 @@ import datetime
 from functools import wraps
 import geopandas as gpd
 import pandas as pd
-from osgeo import gdal
+# from osgeo import gdal
+import rasterio as rio
+import numpy as np
 import psycopg2
-import fiona
+# import fiona
 
 # APP
 app = Flask(__name__, static_folder="raster_data")
@@ -120,6 +122,35 @@ def esposizione():
 def pendenza():
 	image_url = url_for('static', filename='Pendenza_crop_wgs84.tif')
 	return jsonify({"url":image_url, "min":1.99969, "max":57.068,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
+
+@app.route('/api/raster/ndvi')
+def ndvi():
+    istat = request.args.get('istatComune')
+    anno  = request.args.get('anno')
+    lotto = request.args.get('lotto')
+
+    image_name = "NDVI_"+istat+"_lotto"+lotto+"_"+anno+"_10cm.tif"
+
+    image_url = url_for('static', filename=image_name)
+    # esempio: NDVI_069101_lotto06_2017_10cm.tif
+    image = os.path.join('raster_data',image_name)
+
+    if os.path.exists(image):
+        raster = rio.open(image)
+        array = raster.read(masked=True)
+        stats = []
+        for band in array:
+            stats.append({
+                "min":band.min(),
+                "mean":band.mean(),
+                "max":band.max()
+            })
+        stats_string = str(stats).replace("\'", "\"")
+        stats_obj = json.loads(stats_string)
+        return jsonify({"url":image_url, "stats":stats_obj, "description":"NDVI", 
+                        "lotto": lotto, "cod_istat":istat, "anno":anno, "provider":"UNIVAQ_DISIM"})
+    else:
+        return jsonify({"message" : "nessun dato raster"})
 
 # app.run(host='127.0.0.1', debug=True)
 app.run(host='0.0.0.0', debug=True)
