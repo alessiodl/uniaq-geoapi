@@ -49,6 +49,7 @@ Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attr
 <ul>
     <li>PARAMETRI: <strong>istatComune</strong>, <strong>anno</strong>, <strong>lotto</strong></li>
     <li>RITORNA: JSON Object</li>
+    <li>ESEMPIO: http://hostname/api/raster/ndvi?istatComune=069101&anno=2018&lotto=07</li>
 </ul>
 
 ### http://hostname/api/raster/dem
