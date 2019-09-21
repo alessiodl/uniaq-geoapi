@@ -45,6 +45,13 @@ Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attr
     <li>ESEMPIO: http://hostname/api/dati/vinificazione?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9&tipoDati=microvinificazione</li>
 </ul>
 
+### http://hostname/api/raster/list
+<ul>
+    <li>PARAMETRI: <strong>istatComune</strong></li>
+    <li>RITORNA: JSON Object</li>
+    <li>ESEMPIO: http://hostname/api/raster/list?istatComune=069101</li>
+</ul>
+
 ### http://hostname/api/raster/ndvi
 <ul>
     <li>PARAMETRI: <strong>istatComune</strong>, <strong>anno</strong>, <strong>lotto</strong></li>
@@ -54,16 +61,19 @@ Utilizza lo standard JSON Web Token (JWT) per l'autenticazione degli utenti attr
 
 ### http://hostname/api/raster/dem
 <ul>
+    <li>PARAMETRI: <strong>istatComune</strong></li>
     <li>RITORNA: JSON Object</li>
 </ul>
 
 ### http://hostname/api/raster/esposizione
 <ul>
+    <li>PARAMETRI: <strong>istatComune</strong></li>
     <li>RITORNA: JSON Object</li>
 </ul>
 
 ### http://hostname/api/raster/pendenza
 <ul>
+    <li>PARAMETRI: <strong>istatComune</strong></li>
     <li>RITORNA: JSON Object</li>
 </ul>
 

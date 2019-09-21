@@ -109,20 +109,42 @@ def dati_vinificazione():
     else:
         return jsonify({"message" : "occorre specificare i dati di microvinificazione desiderati!"})
 
+@app.route('/api/raster/list')
+def raster_list():
+    istat = request.args.get('istatComune')
+
+    raster_list = []
+
+    for file in os.listdir('raster_data'):
+        if file.endswith('.tif'):
+            if istat in file:
+                raster_list.append({"filename":file, "alias":file.replace('.tif','').replace("_"+istat+"_",'').replace('lotto','_lotto_')})
+
+    raster_list_sorted = sorted(raster_list, key = lambda i: i['alias'])
+    raster_list_str = str(raster_list_sorted).replace("\'", "\"")
+    raster_list_obj = json.loads(raster_list_str)
+    return jsonify({'raster_data':raster_list_obj})
+
 @app.route('/api/raster/dem')
 def dem():
-	image_url = url_for('static', filename='DEM_crop_wgs84.tif')
-	return jsonify({"url":image_url, "min":155.378, "max":334.486, "description":"Digital Elevation Model","provider":"UNIVAQ_DISIM"})
+    istat = request.args.get('istatComune')
+    image_name = 'DEM_'+istat+'_.tif'
+    image_url = url_for('static', filename=image_name)
+    return jsonify({"url":image_url, "min":155.378, "max":334.486, "description":"Digital Elevation Model","provider":"UNIVAQ_DISIM"})
 
 @app.route('/api/raster/esposizione')
 def esposizione():
-	image_url = url_for('static', filename='Esposizioni_crop_wgs84.tif')
-	return jsonify({"url":image_url, "min":7.20119, "max":352.786, "description":"Mappa della Esposizione","provider":"UNIVAQ_DISIM"})
+    istat = request.args.get('istatComune')
+    image_name = 'ESPOSIZIONE_'+istat+'_.tif'
+    image_url = url_for('static', filename=image_name)
+    return jsonify({"url":image_url, "min":7.20119, "max":352.786, "description":"Mappa della Esposizione","provider":"UNIVAQ_DISIM"})
 
 @app.route('/api/raster/pendenza')
 def pendenza():
-	image_url = url_for('static', filename='Pendenza_crop_wgs84.tif')
-	return jsonify({"url":image_url, "min":1.99969, "max":57.068,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
+    istat = request.args.get('istatComune')
+    image_name = 'PENDENZA_'+istat+'_.tif'
+    image_url = url_for('static', filename=image_name)
+    return jsonify({"url":image_url, "min":1.99969, "max":57.068,"description":"Mappa della Pendenza","provider":"UNIVAQ_DISIM"})
 
 @app.route('/api/raster/ndvi')
 def ndvi():
