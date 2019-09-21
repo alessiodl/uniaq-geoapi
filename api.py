@@ -118,7 +118,7 @@ def raster_list():
     for file in os.listdir('raster_data'):
         if file.endswith('.tif'):
             if istat in file:
-                raster_list.append({"filename":file, "alias":file.replace('.tif','').replace("_"+istat+"_",'').replace('lotto','_lotto_')})
+                raster_list.append({"filename":file, "alias":file.replace('.tif','').replace("_"+istat+"_",'').replace('lotto','_lotto_').replace('_',' ')})
 
     raster_list_sorted = sorted(raster_list, key = lambda i: i['alias'])
     raster_list_str = str(raster_list_sorted).replace("\'", "\"")
